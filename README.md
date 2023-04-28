@@ -2,7 +2,7 @@
 - Disclaimer: The boxes do not work when both players have the exact same information!
   - This is because player info is used to detect a swap. When both players' info are the same, the program thinks a swap has occurred whenever there is an update. 
   - Therefore, it is best to set the players' info before changing the score, match, or phase.
-  - Hopefully, this is not an issue since players have different sponsors, Twitter handles, etc. even if they have the same name. Also identical player info should not be a problem in a tournament setting due to different seeding.
+  - Hopefully, this is not an issue since players have different sponsors, Twitter handles, etc. even if they have the same name. Also identical player info should not be a problem in a tournament setting due to different seedings.
 - The color of the boxes disappears when the overlay Browser source is refreshed, so it is best to keep it active.
 - Reset the score to 0-0 to have the boxes be colored from the game 1 box.
 - Change Best Of to either increase or decrease the number of boxes.
