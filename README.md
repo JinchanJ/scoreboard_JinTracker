@@ -21,6 +21,6 @@ The boxes do not work when the two players have the exact same information! (Thi
 - You can edit the HTML, CSS, and JavaScript files to change the color and position of words and containers, etc.
 
 # Inspirations
-- Got the idea of having boxes keeping track of the players' game results from Wii Sports Resort Swordplay.
+- Got the idea of having boxes keeping track of who won which game from Wii Sports Resort Swordplay.
 - Got the idea of putting the player info chips on top of the player container from @SevenThomsen's Sweet Spot 7 overlay.
 - The overall layout having the score, player sponsor in gradient color, player name, and country flag is inspired from VGBC overlays.
