@@ -4,7 +4,7 @@ The boxes do not work when the two players have the exact same information! (Thi
 - Reset the score to 0-0 to have the boxes be colored from the game 1 box.
 - Change Best Of to either increase or decrease the number of boxes.
 - The topleft container holding match info disappears when the match info is not available. This works the same for the small phase container just below it.
-- There are four types of chip displayed on top of the player container: seed, twitter, pronoun, and state of the country the player is from.
+- There are four types of player info chip displayed on top of the player container: seed, twitter, pronoun, and state of the country the player is from.
 
 # Setup Guide:
 - Download the zip file and open it.
@@ -16,7 +16,11 @@ The boxes do not work when the two players have the exact same information! (Thi
 # Player Cams:
 - CameraBorders.png is included to add borders to player cams.
 
-
-# Enjoy!
+# Customize:
 - You can name an image tournament_logo.png and put it in this file to have it be displayed at the bottom center.
 - You can edit the HTML, CSS, and JavaScript files to change the color and position of words and containers, etc.
+
+# Inspirations
+- Got the idea of having boxes keeping track of the players' game results from Wii Sports Resort Swordplay.
+- Got the idea of putting the player info chips on top of the player container from @SevenThomsen's Sweet Spot 7 overlay.
+- The overall layout having the score, player sponsor in gradient color, player name, and country flag is inspired from VGBC overlays.
