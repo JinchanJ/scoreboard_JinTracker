@@ -22,5 +22,5 @@ The boxes do not work when the two players have the exact same information! (Thi
 
 # Inspirations
 - Got the idea of having boxes keeping track of who won which game from Wii Sports Resort Swordplay.
-- Got the idea of putting the player info chips on top of the player container from @SevenThomsen's Sweet Spot 7 overlay.
+- Got the idea of putting the player info chips on top of the player container and displaying player's state of origin in one of the chips from @SevenThomsen's Sweet Spot 7 overlay.
 - The overall layout having the score, player sponsor in gradient color, player name, and country flag is inspired from VGBC overlays.
