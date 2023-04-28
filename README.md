@@ -4,7 +4,7 @@ The boxes do not work when the two players have the exact same information! (Thi
 - Reset the score to 0-0 to have the boxes be colored from the game 1 box.
 - Change Best Of to either increase or decrease the number of boxes.
 - The topleft container holding match info disappears when the match info is not available. This works the same for the small phase container just below it.
-- There are four types of player info chip displayed on top of the player container: seed, twitter, pronoun, and state of the country the player is from.
+- There are four types of player info chip displayed on top of the player container: seed, twitter, pronoun, and the state the player is from.
 
 # Setup Guide:
 - Download the zip file and open it.
@@ -22,5 +22,5 @@ The boxes do not work when the two players have the exact same information! (Thi
 
 # Inspirations
 - Got the idea of having boxes keeping track of who won which game from Wii Sports Resort Swordplay.
-- Got the idea of putting the player info chips on top of the player container and displaying player's state of origin in one of the chips from @SevenThomsen's Sweet Spot 7 overlay.
+- Got the idea of putting the player info chips on top of the player container and displaying the state the player is from in one of the chips from @SevenThomsen's Sweet Spot 7 overlay.
 - The overall layout having the score, player sponsor in gradient color, player name, and country flag is inspired from VGBC overlays.
