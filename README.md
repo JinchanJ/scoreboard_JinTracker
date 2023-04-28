@@ -1,6 +1,7 @@
 # Game Result Tracker Overlay:
 - Disclaimer:
 The boxes do not work when both players have the exact same information! (This is because player info is used to detect a swap. When both players' info are the same, the program thinks a swap has occurred whenever there is an update)
+- It is best to set the players' names before changing the score.
 - Reset the score to 0-0 to have the boxes be colored from the game 1 box.
 - Change Best Of to either increase or decrease the number of boxes.
 - The topleft container that holds match info disappears when match info is not available. This works the same for the small phase container just below it.
