@@ -299,3 +299,24 @@ body {
 .p2_won {
   background: var(--p2-score-bg-color);
 }
+
+.bg {
+  position: absolute;
+  width: 960px;
+  height: 1080px;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.p1.bg {
+  left: 0;
+  -webkit-mask-image: url("./P1CameraBorder.png");
+  background: var(--p1-score-bg-color);
+}
+
+.p2.bg {
+  right: 0;
+  -webkit-mask-image: url("./P2CameraBorder.png");
+  background: var(--p2-score-bg-color);
+}
