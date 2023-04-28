@@ -16,6 +16,7 @@ The boxes do not work when both players have the exact same information! (This i
   
 # Player Cams:
 - CameraBorders.png is included to add borders to player cams.
+- A 1920x1080 dimension player cam should fit inside a border.
 
 # Customize:
 - You can rename an image tournament_logo.png and put it in this file to have it be displayed at the bottom center.
