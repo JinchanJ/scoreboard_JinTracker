@@ -1,6 +1,6 @@
 # Game Result Tracker Overlay:
 - Disclaimer:
-The boxes do not work when both players have the exact same information! (This is because player info is used to detect a swap. When both players' info are the same, the program thinks a swap has occurred whenever there is an update)
+The boxes do not work when both players have the exact same information! (This is because player info is used to detect a swap. When both players' info are the same, the program thinks a swap has occurred whenever there is an update. Hopefully, this is not an issue since players have different sponsors, Twitter handles, etc. even if they have the same name. Also identical player info should not be a problem in a tournament setting due to different seeding.)
 - It is best to set the players' names before changing the score.
 - Reset the score to 0-0 to have the boxes be colored from the game 1 box.
 - Change Best Of to either increase or decrease the number of boxes.
