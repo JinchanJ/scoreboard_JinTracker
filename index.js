@@ -41,8 +41,15 @@ LoadEverything().then(() => {
           );
 
           SetInnerHtml(
-            $(`.p${t + 1}.container .flagcountry`),
-            player.character[1].name ? `<div class='flag'></div>` : ""
+            $(`.p${t + 1} .flagcountry`),
+            player.country.asset
+              ? `<div class='flag' style='background-image: url(../../${player.country.asset.toLowerCase()})'></div>`
+              : ""
+          );
+
+          SetInnerHtml(
+            $(`.p${t + 1}.container .placeholder_container`),
+            player.character[1].name ? `<div class='placeholder'></div>` : ""
           );
 
           let score = [data.score.score_left, data.score.score_right];
@@ -88,8 +95,6 @@ LoadEverything().then(() => {
             data.score.phase ? data.score.phase.toUpperCase() : ""
           );
 
-          console.log(player.character[1].name);
-
           // await CharacterDisplay(
           //   $(`.p${t + 1} .character_container`),
           //   {
@@ -122,7 +127,6 @@ LoadEverything().then(() => {
         }
       }
     }
-    // matchDisplayToggle(); // Displays the topleft container when match is not an empty string
     scoreBoxDisplayToggle(); // Displays the boxes when Best Of is greater than 0
     savedBestOf = createGameBoxes(savedBestOf); // Creates the boxes
 
@@ -334,23 +338,6 @@ function scoreBoxDisplayToggle() {
     // Hides when Best Of is not greater than 0
     // scoreBoxes.classList.add("hidden");
     scoreBoxes.classList.remove("unhidden");
-  }
-}
-
-/**
- * Displays the topleft container with the match info when match is not an empty string.
- */
-async function matchDisplayToggle() {
-  const topLeftContainer = document.querySelector(".match");
-
-  if (data.score.match) {
-    // Show the topleft container when the match is not an empty string
-    topLeftContainer.classList.add("unhidden");
-    topLeftContainer.classList.remove("hidden");
-  } else {
-    // Hide when match is just an empty string
-    topLeftContainer.classList.add("hidden");
-    topLeftContainer.classList.remove("unhidden");
   }
 }
 
