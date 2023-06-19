@@ -70,24 +70,6 @@ LoadEverything().then(() => {
             );
 
             // Gets the name of the state instead of the flag and put it next to the location pin logo.
-
-            // let location = "";
-
-            // if (player.country.name) {
-            //   location = player.country.name;
-            //   console.log("location: " + location);
-            // }
-
-            // if (player.state.name) {
-            //   location = player.state.name + ", " + player.country.name;
-            // }
-
-            // SetInnerHtml(
-            //   $(`.p${t + 1} .flagstate`),
-            //   `<span class="location_logo symbol"></span>${location.toUpperCase()}`
-            // );
-
-            // Gets the name of the state instead of the flag and put it next to the location pin logo.
             SetInnerHtml(
               $(`.p${t + 1} .flagstate`),
               player.state.name
@@ -115,14 +97,6 @@ LoadEverything().then(() => {
               $(".phase"),
               data.score.phase ? data.score.phase.toUpperCase() : ""
             );
-
-            // await CharacterDisplay(
-            //   $(`.p${t + 1} .character_container`),
-            //   {
-            //     source: `score.team.${t + 1}`,
-            //   },
-            //   event
-            // );
 
             document
               .querySelector(`.p${t + 1}.character_container`)
@@ -175,7 +149,6 @@ LoadEverything().then(() => {
         `
         );
         for (const [p, player] of [team.player["1"]].entries()) {
-          console.log(player);
           document
             .querySelector(`.p${t + 1}.character_container`)
             .classList.remove("unhidden");
@@ -204,7 +177,6 @@ LoadEverything().then(() => {
 
     checkSwap(); // Check to see if a swap took place. If it did, then the colors of the boxes are flipped and swapDetected is set to true.
     if (!swapDetected) {
-      console.log("Normal color box update");
       // If it didn't, then just update the savedGameArray without flipping the colors of the boxes.
       ({ savedGameArray, newP1Score, newP2Score, p1Score, p2Score } =
         updateGameArray(
@@ -238,7 +210,6 @@ LoadEverything().then(() => {
    */
   function colorInBoxes() {
     for (let i = 0; i < data.score.best_of; i++) {
-      // const gameBox = document.querySelector(`.`);
       const redGameBox = document.querySelector(`.game${i + 1}.p1_won`);
       const blueGameBox = document.querySelector(`.game${i + 1}.p2_won`);
       const darkGameBox = document.querySelector(`.game${i + 1}.neither_won`);
@@ -283,7 +254,6 @@ LoadEverything().then(() => {
       compareObjects(player1, newPlayer2)
     ) {
       swapDetected = true;
-      console.log("Swap detected");
       // Change player 1's win to player 2's win and vice versa
       for (let i = 0; i < savedGameArray.length; i++) {
         if (savedGameArray[i] == 1) {
@@ -407,10 +377,8 @@ function scoreBoxDisplayToggle() {
   if (data.score.best_of > 0) {
     // Shows the box(es) when Best Of is greater than 0
     scoreBoxes.classList.add("unhidden");
-    // scoreBoxes.classList.remove("hidden");
   } else {
     // Hides when Best Of is not greater than 0
-    // scoreBoxes.classList.add("hidden");
     scoreBoxes.classList.remove("unhidden");
   }
 }
