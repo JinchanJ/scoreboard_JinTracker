@@ -54,12 +54,12 @@ body {
 
 .p1 .name {
   transform: skew(-20deg);
-  margin-left: 12px;
+  margin-left: 15px;
 }
 
 .p2 .name {
   transform: skew(20deg);
-  margin-right: 12px;
+  margin-right: 15px;
 }
 
 .symbol {
@@ -175,8 +175,8 @@ body {
 }
 
 .p1 .score_container {
-  margin-left: 12px;
   right: 0px;
+  margin-left: 15px;
   color: var(--p1-score-color);
   background: var(--p1-score-bg-color);
 }
@@ -188,7 +188,7 @@ body {
 
 .p2 .score_container {
   left: 0px;
-  margin-right: 12px;
+  margin-right: 15px;
   color: var(--p2-score-color);
   background: var(--p2-score-bg-color);
 }
