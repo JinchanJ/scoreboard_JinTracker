@@ -21,15 +21,18 @@ LoadEverything().then(() => {
   Update = async (event) => {
     let data = event.data;
 
-    for (const [t, team] of [
-      data.score.team["1"],
-      data.score.team["2"],
-    ].entries()) {
-      for (const [p, player] of [team.player["1"]].entries()) {
-        if (player) {
-          SetInnerHtml(
-            $(`.p${t + 1}.container .name`),
-            `
+    let isTeams = Object.keys(data.score.team["1"].player).length > 1;
+
+    if (!isTeams) {
+      for (const [t, team] of [
+        data.score.team["1"],
+        data.score.team["2"],
+      ].entries()) {
+        for (const [p, player] of [team.player["1"]].entries()) {
+          if (player) {
+            SetInnerHtml(
+              $(`.p${t + 1}.container .name`),
+              `
             <span>
               <span class="sponsor">
                 ${player.team ? player.team.toUpperCase() : ""}
@@ -38,100 +41,170 @@ LoadEverything().then(() => {
               ${team.losers ? "(L)" : ""}
             </span>
             `
-          );
+            );
 
-          SetInnerHtml(
-            $(`.p${t + 1} .flagcountry`),
-            player.country.asset
-              ? `<div class='flag' style='background-image: url(../../${player.country.asset.toLowerCase()})'></div>`
-              : ""
-          );
+            SetInnerHtml(
+              $(`.p${t + 1} .flagcountry`),
+              player.country.asset
+                ? `<div class='flag' style='background-image: url(../../${player.country.asset.toLowerCase()})'></div>`
+                : ""
+            );
 
-          SetInnerHtml(
-            $(`.p${t + 1}.container .placeholder_container`),
-            player.character[1].name ? `<div class='placeholder'></div>` : ""
-          );
+            SetInnerHtml(
+              $(`.p${t + 1}.container .placeholder_container`),
+              player.character[1].name ? `<div class='placeholder'></div>` : ""
+            );
 
-          let score = [data.score.score_left, data.score.score_right];
+            let score = [data.score.score_left, data.score.score_right];
 
-          SetInnerHtml($(`.p${t + 1} .score`), String(team.score));
+            SetInnerHtml($(`.p${t + 1} .score`), String(team.score));
 
-          SetInnerHtml(
-            $(`.p${t + 1} .seed`),
-            player.seed ? `SEED ${player.seed}` : ""
-          );
+            SetInnerHtml(
+              $(`.p${t + 1} .seed`),
+              player.seed ? `SEED ${player.seed}` : ""
+            );
 
-          SetInnerHtml(
-            $(`.p${t + 1} .pronoun`),
-            player.pronoun ? player.pronoun.toUpperCase() : ""
-          );
+            SetInnerHtml(
+              $(`.p${t + 1} .pronoun`),
+              player.pronoun ? player.pronoun.toUpperCase() : ""
+            );
 
-          // Gets the name of the state instead of the flag and put it next to the location pin logo.
-          SetInnerHtml(
-            $(`.p${t + 1} .flagstate`),
-            player.state.name
-              ? `<span class="location_logo symbol"></span>${String(
-                  player.state.name
-                ).toUpperCase()}`
-              : ""
-          );
+            // Gets the name of the state instead of the flag and put it next to the location pin logo.
 
-          SetInnerHtml(
-            $(`.p${t + 1} .twitter`),
-            player.twitter
-              ? `<span class="twitter_logo symbol"></span>${String(
-                  player.twitter
-                ).toUpperCase()}`
-              : ""
-          );
+            // let location = "";
 
-          SetInnerHtml(
-            $(".match"),
-            data.score.match ? data.score.match.toUpperCase() : ""
-          );
+            // if (player.country.name) {
+            //   location = player.country.name;
+            //   console.log("location: " + location);
+            // }
 
-          SetInnerHtml(
-            $(".phase"),
-            data.score.phase ? data.score.phase.toUpperCase() : ""
-          );
+            // if (player.state.name) {
+            //   location = player.state.name + ", " + player.country.name;
+            // }
 
-          // await CharacterDisplay(
-          //   $(`.p${t + 1} .character_container`),
-          //   {
-          //     source: `score.team.${t + 1}`,
-          //   },
-          //   event
-          // );
+            // SetInnerHtml(
+            //   $(`.p${t + 1} .flagstate`),
+            //   `<span class="location_logo symbol"></span>${location.toUpperCase()}`
+            // );
 
-          let teamMultiplyier = t == 0 ? 1 : -1;
+            // Gets the name of the state instead of the flag and put it next to the location pin logo.
+            SetInnerHtml(
+              $(`.p${t + 1} .flagstate`),
+              player.state.name
+                ? `<span class="location_logo symbol"></span>${String(
+                    player.state.name
+                  ).toUpperCase()}`
+                : ""
+            );
 
-          await CharacterDisplay(
-            $(`.p${t + 1}.character_container`),
-            {
-              source: `score.team.${t + 1}`,
-              anim_out: {
-                autoAlpha: 0,
-                x: -20 * teamMultiplyier + "px",
-                stagger: teamMultiplyier * 0.2,
-                duration: 0.4,
+            SetInnerHtml(
+              $(`.p${t + 1} .twitter`),
+              player.twitter
+                ? `<span class="twitter_logo symbol"></span>${String(
+                    player.twitter
+                  ).toUpperCase()}`
+                : ""
+            );
+
+            SetInnerHtml(
+              $(".match"),
+              data.score.match ? data.score.match.toUpperCase() : ""
+            );
+
+            SetInnerHtml(
+              $(".phase"),
+              data.score.phase ? data.score.phase.toUpperCase() : ""
+            );
+
+            // await CharacterDisplay(
+            //   $(`.p${t + 1} .character_container`),
+            //   {
+            //     source: `score.team.${t + 1}`,
+            //   },
+            //   event
+            // );
+
+            document
+              .querySelector(`.p${t + 1}.character_container`)
+              .classList.add("unhidden");
+
+            let teamMultiplyier = t == 0 ? 1 : -1;
+
+            await CharacterDisplay(
+              $(`.p${t + 1}.character_container`),
+              {
+                source: `score.team.${t + 1}`,
+                anim_out: {
+                  autoAlpha: 0,
+                  x: -20 * teamMultiplyier + "px",
+                  stagger: teamMultiplyier * 0.2,
+                  duration: 0.4,
+                },
+                anim_in: {
+                  autoAlpha: 1,
+                  x: "0px",
+                  stagger: teamMultiplyier * 0.2,
+                  duration: 0.4,
+                },
               },
-              anim_in: {
-                autoAlpha: 1,
-                x: "0px",
-                stagger: teamMultiplyier * 0.2,
-                duration: 0.4,
-              },
-            },
-            event
-          );
+              event
+            );
+          }
         }
       }
+    } else {
+      for (const [t, team] of [
+        data.score.team["1"],
+        data.score.team["2"],
+      ].entries()) {
+        let teamName = "";
+        let names = [];
+        for (const [p, player] of Object.values(team.player).entries()) {
+          if (player && player.name) {
+            names.push(await Transcript(player.name.toUpperCase()));
+          }
+        }
+        teamName = names.join(" / ");
+        SetInnerHtml(
+          $(`.p${t + 1}.container .name`),
+          `
+        <span>
+          ${teamName}
+          ${team.losers ? "(L)" : ""}
+        </span>
+        `
+        );
+        for (const [p, player] of [team.player["1"]].entries()) {
+          console.log(player);
+          document
+            .querySelector(`.p${t + 1}.character_container`)
+            .classList.remove("unhidden");
+
+          SetInnerHtml($(`.p${t + 1} .seed`), "");
+          SetInnerHtml($(`.p${t + 1} .flagcountry`), "");
+          SetInnerHtml($(`.p${t + 1} .flagstate`), "");
+          SetInnerHtml($(`.p${t + 1} .twitter`), "");
+          SetInnerHtml($(`.p${t + 1} .pronoun`), "");
+          SetInnerHtml($(`.p${t + 1}.container .placeholder_container`), "");
+          SetInnerHtml($(`.p${t + 1} .score`), String(team.score));
+        }
+      }
+      SetInnerHtml(
+        $(".match"),
+        data.score.match ? data.score.match.toUpperCase() : ""
+      );
+      SetInnerHtml(
+        $(".phase"),
+        data.score.phase ? data.score.phase.toUpperCase() : ""
+      );
     }
+
     scoreBoxDisplayToggle(); // Displays the boxes when Best Of is greater than 0
     savedBestOf = createGameBoxes(savedBestOf); // Creates the boxes
 
     checkSwap(); // Check to see if a swap took place. If it did, then the colors of the boxes are flipped and swapDetected is set to true.
     if (!swapDetected) {
+      console.log("Normal color box update");
       // If it didn't, then just update the savedGameArray without flipping the colors of the boxes.
       ({ savedGameArray, newP1Score, newP2Score, p1Score, p2Score } =
         updateGameArray(
@@ -210,6 +283,7 @@ LoadEverything().then(() => {
       compareObjects(player1, newPlayer2)
     ) {
       swapDetected = true;
+      console.log("Swap detected");
       // Change player 1's win to player 2's win and vice versa
       for (let i = 0; i < savedGameArray.length; i++) {
         if (savedGameArray[i] == 1) {
@@ -388,18 +462,20 @@ function compareObjects(obj1, obj2) {
 
   // Loop through the properties of obj1
   for (let key of obj1Keys) {
-    // Check if the property exists in obj2
-    if (!obj2.hasOwnProperty(key)) {
-      return false;
-    }
-    // Check if the values of the properties are the same
-    // Check to see if there is an object inside the object
-    if (typeof obj1[key] == "object" && obj1[key] && obj2[key]) {
-      // If an inner object of obj1 is not equal to the inner object of obj2, then we return false to avoid any more comparisons
-      if (!compareObjects(obj1[key], obj2[key])) return false;
-      // If the primitive types are not equal to each other, then we return false here as well
-    } else if (obj1[key] !== obj2[key]) {
-      return false;
+    if (key !== "seed") {
+      // Check if the property exists in obj2
+      if (!obj2.hasOwnProperty(key)) {
+        return false;
+      }
+      // Check if the values of the properties are the same
+      // Check to see if there is an object inside the object
+      if (typeof obj1[key] == "object" && obj1[key] && obj2[key]) {
+        // If an inner object of obj1 is not equal to the inner object of obj2, then we return false to avoid any more comparisons
+        if (!compareObjects(obj1[key], obj2[key])) return false;
+        // If the primitive types are not equal to each other, then we return false here as well
+      } else if (obj1[key] !== obj2[key]) {
+        return false;
+      }
     }
   }
   // If all properties and their values are the same, return true
