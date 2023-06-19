@@ -9,6 +9,7 @@
 - Change Best Of to either increase or decrease the number of boxes.
 - The topleft container that holds match info disappears when match info is not available. This works the same for the small phase container just below it.
 - There are five types of player info chip displayed on top of the player container: seed, twitter, pronoun, the state the player is from, and the country flag the player is from.
+- You can change the type of character image by going to settings.json and changing the asset key.
 
 # Setup Guide:
 
