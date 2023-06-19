@@ -430,6 +430,7 @@ function compareObjects(obj1, obj2) {
 
   // Loop through the properties of obj1
   for (let key of obj1Keys) {
+    // Seedings can change for a player/team so do not check it
     if (key !== "seed") {
       // Check if the property exists in obj2
       if (!obj2.hasOwnProperty(key)) {
