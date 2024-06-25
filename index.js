@@ -85,24 +85,26 @@ LoadEverything().then(() => {
               player.pronoun ? player.pronoun : ""
             );
 
-            // Get the name of the state instead of the flag and put it next to the location pin logo.
-            SetInnerHtml(
-              $(`.p${t + 1} .flagstate`),
-              player.state.name
-                ? `<span class="location_logo symbol"></span>${String(
-                    player.state.name
-                  )}`
-                : ""
-            );
+            // // Get the name of the state instead of the flag and put it next to the location pin logo.
+            // await SetInnerHtml(
+            //   $(`.p${t + 1} .flagstate`),
+            //   player.state.name
+            //     ? `<span class="location_logo symbol"></span>${String(
+            //         player.state.name
+            //       )}`
+            //     : ""
+            // );
 
-            SetInnerHtml(
-              $(`.p${t + 1} .twitter`),
-              player.twitter
-                ? `<span class="twitter_logo symbol"></span>${String(
-                    player.twitter
-                  )}`
-                : ""
-            );
+            // await SetInnerHtml(
+            //   $(`.p${t + 1} .twitter`),
+            //   player.twitter
+            //     ? `<span class="twitter_logo symbol"></span>${String(
+            //         player.twitter
+            //       )}`
+            //     : ""
+            // );
+
+            // UpdateColor(t);
 
             document
               .querySelector(`.p${t + 1}.character_container`)
@@ -131,6 +133,7 @@ LoadEverything().then(() => {
               },
               event
             );
+            UpdateColor(player, t);
           }
           if (team.color) {
             document
@@ -154,6 +157,8 @@ LoadEverything().then(() => {
       );
       document.querySelector(".tournament_logo").classList.add("unhidden");
       checkSwap(); // Check to see if a swap took place. If it did, then the colors of the boxes are flipped and swapDetected is set to true.
+
+      // UpdateColor(t);
     } else {
       for (const [t, team] of [
         data.score[window.scoreboardNumber].team["1"],
@@ -211,6 +216,7 @@ LoadEverything().then(() => {
       );
       document.querySelector(".tournament_logo").classList.remove("unhidden");
       checkSwapForTeam(); // Check to see if a swap took place. If it did, then the colors of the boxes are flipped and swapDetected is set to true.
+      // UpdateColor(t);
     }
 
     scoreBoxDisplayToggle(); // Display the boxes when Best Of is greater than 0
@@ -615,3 +621,450 @@ function compareObjectsForTeam(obj1, obj2) {
   // If all properties and their values are the same, return true
   return true;
 }
+
+// async function UpdateColor(t) {
+//   // Get the div element by class name
+//   var divs = document.getElementsByClassName(`p${t + 1} container`);
+
+//   var chips = document.getElementsByClassName(`p${t + 1} chips`);
+
+//   // Assuming there's only one div with the class "myDiv", you can directly access it
+//   var div = divs[0];
+
+//   var chip = chips[0];
+
+//   var score_container_element = div.querySelector(".score_container");
+//   var score_element = score_container_element.querySelector(".score");
+//   // var inner_container = div.querySelector(".inner_container");
+//   // var name_container = div.querySelector(".name_container");
+//   var name_element = div.querySelector(".name");
+
+//   var chip_elements = chip.getElementsByClassName("chip");
+
+//   var symbol_elements = chip.getElementsByClassName("symbol");
+
+//   // Get the background color of the div
+//   var color = window
+//     .getComputedStyle(score_container_element, null)
+//     .getPropertyValue("background-color");
+
+//   var components = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+//   if (components) {
+//     // Extract the individual RGB components
+//     var red = parseInt(components[1]);
+//     var green = parseInt(components[2]);
+//     var blue = parseInt(components[3]);
+
+//     // Display the color
+//     console.log("The background color of the div is: " + color);
+//     console.log("Red: " + red);
+//     console.log("Green: " + green);
+//     console.log("Blue: " + blue);
+
+//     const intensity = red * 0.299 + green * 0.587 + blue * 0.114;
+//     console.log("The intensity is: " + intensity);
+
+//     if (intensity > 142) {
+//       console.log("Word should be black");
+
+//       // Change the text color
+//       score_element.style.color = "rgb(24, 24, 27)";
+//       name_element.style.color = "white";
+//       // inner_container.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+//       div.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+//       // div.style.backgroundColor = "rgb(24, 24, 27)";
+
+//       console.log("chip_elements:");
+//       console.log(chip_elements);
+
+//       for (key in chip_elements) {
+//         console.log(key);
+//         console.log("Hello there" + key);
+//         console.log(chip_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         chip_elements.item(key).style.color = "rgb(24, 24, 27)";
+//       }
+
+//       for (key in symbol_elements) {
+//         console.log(symbol_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         symbol_elements.item(key).style.background = "rgb(24, 24, 27)";
+//       }
+//     } else if (intensity > 95) {
+//       console.log("In the middle");
+
+//       // Change the text color
+//       score_element.style.color = "white";
+//       name_element.style.color = "white";
+//       div.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+//       // div.style.backgroundColor = "rgb(24, 24, 27)";
+
+//       for (key in chip_elements) {
+//         console.log(key);
+//         console.log("Hello there" + key);
+//         console.log(chip_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         chip_elements.item(key).style.color = "white";
+//       }
+
+//       for (key in symbol_elements) {
+//         console.log(symbol_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         // symbol_elements.item(key).style.background = "white";
+//       }
+//     } else if (intensity <= 95) {
+//       console.log("Word should be white.");
+
+//       // Change the text color
+//       score_element.style.color = "white";
+//       name_element.style.color = "rgb(24, 24, 27)";
+//       // inner_container.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
+//       div.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
+
+//       for (key in chip_elements) {
+//         console.log(key);
+//         console.log("Hello there" + key);
+//         console.log(chip_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         chip_elements.item(key).style.color = "white";
+//       }
+
+//       for (key in symbol_elements) {
+//         console.log(symbol_elements.item(key));
+//         // var chip_div = chip_elements[key].querySelector(".chip");
+//         // console.log(chip_div);
+//         // symbol_elements.item(key).style.background = "white";
+//       }
+//     }
+//   }
+// }
+
+async function firstAlternateFunction(player, t) {
+  let flagstate = document.querySelector(`.p${t + 1} .flagstate`);
+  flagstate.textContent = player.state.name
+    ? `<div class="location_logo symbol"></div>${String(player.state.name)}`
+    : "";
+}
+
+async function secondAlternateFunction(player, t) {
+  let twitter = document.querySelector(`.p${t + 1} .twitter`);
+  twitter.textContent = player.twitter
+    ? `<div class="twitter_logo symbol"></div>${String(player.twitter)}`
+    : "";
+}
+
+async function firstFunction(player, t) {
+  SetInnerHtml(
+    $(`.p${t + 1} .flagstate`),
+    player.state.name
+      ? `<div class="location_logo symbol"></div>${String(player.state.name)}`
+      : ""
+  );
+}
+
+async function secondFunction(player, t) {
+  SetInnerHtml(
+    $(`.p${t + 1} .twitter`),
+    player.twitter
+      ? `<div class="twitter_logo symbol"></div>${String(player.twitter)}`
+      : ""
+  );
+}
+
+async function UpdateColor(player, t) {
+  await firstFunction(player, t);
+  await secondFunction(player, t);
+  // await firstAlternateFunction(player, t);
+  // await secondAlternateFunction(player, t);
+  await thirdFunction(t);
+  console.log("This was executed!!!!");
+}
+
+async function thirdFunction(t) {
+  let stylesheet = document.styleSheets[1];
+
+  console.log("Stylesheet:");
+  console.log(stylesheet);
+
+  var divs = document.getElementsByClassName(`p${t + 1} container`);
+
+  var chips = document.getElementsByClassName(`p${t + 1} chips`);
+
+  // Assuming there's only one div with the class "myDiv", you can directly access it
+  var div = divs[0];
+
+  var chip = chips[0];
+
+  var score_container_element = div.querySelector(".score_container");
+  var score_element = score_container_element.querySelector(".score");
+  // var inner_container = div.querySelector(".inner_container");
+  // var name_container = div.querySelector(".name_container");
+  var name_element = div.querySelector(".name");
+
+  var symbol_elements = chip.getElementsByClassName("symbol");
+
+  var twitter = chip.querySelector(".twitter");
+
+  var twitter_text = twitter.querySelector(".text");
+
+  var twitter_logo = twitter_text.querySelector(".twitter_logo");
+
+  document.addEventListener("DOMContentLoaded", () => {
+    twitter_logo = twitter_logo.querySelector(".twitter_logo");
+    // your code here
+  });
+
+  console.log(twitter);
+
+  console.log(twitter_text);
+
+  console.log(twitter_logo);
+
+  var location = chip.querySelector(".flagstate");
+
+  var location_text = location.querySelector(".text");
+
+  var location_logo = location_text.querySelector(".location_logo");
+
+  console.log(location);
+
+  console.log(location_text);
+
+  console.log(location_logo);
+
+  var chip_elements = chip.getElementsByClassName("chip");
+
+  // Get the background color of the div
+  var color = window
+    .getComputedStyle(score_container_element, null)
+    .getPropertyValue("background-color");
+
+  var components = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+
+  if (components) {
+    // Extract the individual RGB components
+    var red = parseInt(components[1]);
+    var green = parseInt(components[2]);
+    var blue = parseInt(components[3]);
+
+    // Display the color
+    console.log("The background color of the div is: " + color);
+    console.log("Red: " + red);
+    console.log("Green: " + green);
+    console.log("Blue: " + blue);
+
+    var intensity = red * 0.299 + green * 0.587 + blue * 0.114;
+    console.log("The intensity is: " + intensity);
+
+    if (intensity > 142) {
+      console.log("Word should be black");
+
+      // Change the text color
+      score_element.style.color = "rgb(24, 24, 27)";
+      name_element.style.color = "white";
+      // inner_container.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+      // div.style.backgroundColor = "rgba(24, 24, 27, 0.8)";
+      div.style.backgroundColor = "rgb(24, 24, 27)";
+      console.log("chip_elements:");
+      console.log(chip_elements);
+      console.log("symbol_elements:");
+      console.log(symbol_elements);
+
+      // for (var i = 0; i < symbol_elements.length; i++) {
+      //   console.log("We are HERE");
+      //   console.log(symbol_elements.item(i));
+      //   // var chip_div = chip_elements[key].querySelector(".chip");
+      //   // console.log(chip_div);
+      //   symbol_elements.item(i).style.background = "rgb(24, 24, 27)";
+      //   console.log("Background is Yellow");
+      // }
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .twitter_logo`,
+        "background-image",
+        "url(./X_twitter_black.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .location_logo`,
+        "background-image",
+        "url(./map_pin_black.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .chip .text:not(.text_empty)`,
+        "text-shadow",
+        "none"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .score`,
+        "text-shadow",
+        "none"
+      );
+
+      for (key in chip_elements) {
+        console.log(key);
+        console.log("Hello there" + key);
+        console.log(chip_elements.item(key));
+        // var chip_div = chip_elements[key].querySelector(".chip");
+        // console.log(chip_div);
+        chip_elements.item(key).style.color = "rgb(24, 24, 27)";
+        // chip_elements.item(key).style.background = "rgb(24, 24, 27)";
+      }
+    } else if (intensity > 95) {
+      console.log("In the middle");
+
+      // Change the text color
+      score_element.style.color = "white";
+      name_element.style.color = "white";
+      // div.style.backgroundColor = "rgba(24, 24, 27, 0.8)";
+      div.style.backgroundColor = "rgb(24, 24, 27)";
+
+      // for (var i = 0; i < symbol_elements.length; i++) {
+      //   console.log(symbol_elements.item(i));
+      //   // var chip_div = chip_elements[key].querySelector(".chip");
+      //   // console.log(chip_div);
+
+      //   symbol_elements.item(i).style.background = "white";
+      // }
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .twitter_logo`,
+        "background-image",
+        "url(./X_twitter_white.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .location_logo`,
+        "background-image",
+        "url(./map_pin_white.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .chip .text:not(.text_empty)`,
+        "text-shadow",
+        "0em 0em 0.2em #000"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .score`,
+        "text-shadow",
+        "0em 0em 0.2em #000"
+      );
+
+      for (key in chip_elements) {
+        console.log(key);
+        console.log("Hello there" + key);
+        console.log(chip_elements.item(key));
+        // var chip_div = chip_elements[key].querySelector(".chip");
+        // console.log(chip_div);
+        chip_elements.item(key).style.color = "white";
+      }
+    } else if (intensity <= 95) {
+      console.log("Word should be white.");
+
+      // Change the text color
+      score_element.style.color = "white";
+      name_element.style.color = "rgb(24, 24, 27)";
+      // inner_container.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
+      div.style.backgroundColor = "rgba(255, 255, 255)";
+
+      // for (var i = 0; i < symbol_elements.length; i++) {
+      //   console.log(symbol_elements.item(i));
+      //   // var chip_div = chip_elements[key].querySelector(".chip");
+      //   // console.log(chip_div);
+
+      //   symbol_elements.item(i).style.background = "white";
+      // }
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .twitter_logo`,
+        "background-image",
+        "url(./X_twitter_white.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .location_logo`,
+        "background-image",
+        "url(./map_pin_white.png)"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .chip .text:not(.text_empty)`,
+        "text-shadow",
+        "0em 0em 0.2em #000"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1} .score`,
+        "text-shadow",
+        "0em 0em 0.2em #000"
+      );
+
+      // changeStylesheetRule(
+      //   stylesheet,
+      //   `.p${t + 1}.container`,
+      //   "filter",
+      //   "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
+      // );
+
+      // changeStylesheetRule(
+      //   stylesheet,
+      //   `.p${t + 1}.under_chips`,
+      //   "filter",
+      //   "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
+      // );
+
+      for (key in chip_elements) {
+        console.log(key);
+        console.log("Hello there" + key);
+        console.log(chip_elements.item(key));
+        // var chip_div = chip_elements[key].querySelector(".chip");
+        // console.log(chip_div);
+        chip_elements.item(key).style.color = "white";
+      }
+    }
+  }
+  console.log("Third Function Executed!!!");
+}
+
+function changeStylesheetRule(stylesheet, selector, property, value) {
+  // Make the strings lowercase
+  selector = selector.toLowerCase();
+  property = property.toLowerCase();
+  value = value.toLowerCase();
+
+  // Change it if it exists
+  for (var i = 0; i < stylesheet.cssRules.length; i++) {
+    var rule = stylesheet.cssRules[i];
+    if (rule.selectorText === selector) {
+      rule.style[property] = value;
+      return;
+    }
+  }
+
+  // Add it if it does not
+  stylesheet.insertRule(selector + " { " + property + ": " + value + "; }", 0);
+}
+
+// Used like so:
+// changeStylesheetRule(s, "body", "color", "rebeccapurple");
