@@ -752,7 +752,7 @@ async function thirdFunction(t) {
       for (key in chip_elements) {
         chip_elements.item(key).style.color = "rgb(24, 24, 27)";
       }
-    } else if (intensity > 95) {
+    } else if (intensity > 75) {
       console.log("In the middle");
 
       // Change the text color
@@ -807,7 +807,7 @@ async function thirdFunction(t) {
       for (key in chip_elements) {
         chip_elements.item(key).style.color = "white";
       }
-    } else if (intensity <= 95) {
+    } else if (intensity <= 75) {
       // Change the text color
       score_element.style.color = "white";
       name_element.style.color = "rgb(24, 24, 27)";
@@ -973,7 +973,7 @@ async function thirdAlternateFunction(t) {
       for (key in chip_elements) {
         chip_elements.item(key).style.color = "rgb(24, 24, 27)";
       }
-    } else if (intensity > 95) {
+    } else if (intensity > 75) {
       console.log("In the middle");
 
       // Change the text color
@@ -1028,7 +1028,7 @@ async function thirdAlternateFunction(t) {
       for (key in chip_elements) {
         chip_elements.item(key).style.color = "white";
       }
-    } else if (intensity <= 95) {
+    } else if (intensity <= 75) {
       console.log("Word should be white.");
 
       // Change the text color
