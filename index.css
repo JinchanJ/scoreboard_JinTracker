@@ -29,8 +29,6 @@ body {
   overflow: hidden;
 
   border-style: solid;
-  /* border-top-width: 2px; */
-  /* border-bottom-width: 2px; */
   border-width: 0px;
 }
 
@@ -93,8 +91,6 @@ body {
 }
 
 .symbol {
-  /* Color of the symbol */
-  /* background: white; */
   width: 25px;
   height: 25px;
   margin-right: 3px;
@@ -106,38 +102,6 @@ body {
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents repeating */
 }
-
-/* .twitter_logo {
-  width: 25px;
-  height: 25px;
-  background-color: white;
-  -webkit-mask-image: url("./icons8-twitterx.svg");
-  -webkit-mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  position: relative;
-
-  background-size: 100%;
-  background-image: url("./icons8-twitterx.svg");
-  -webkit-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.75));
-  -moz-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.75));
-  -ms-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.75));
-  -o-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.75));
-} */
-
-/* .twitter_logo::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  -webkit-mask-image: url("./icons8-twitterx.svg");
-  -webkit-mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.75);
-  z-index: -1;
-} */
 
 .under_chips .twitter_logo {
   background: rgba(0, 0, 0, 0);
@@ -475,7 +439,6 @@ body {
   border-style: solid;
   border-radius: 8px;
 
-  /* text-shadow: 3px 3px 3px #000; */
   text-shadow: 0em 0em 0.2em #000;
 }
 
@@ -488,7 +451,6 @@ body {
 }
 
 .neither_won {
-  /* background: rgba(0, 0, 0, 0.75); */
   background: rgba(255, 255, 255, 0.3);
 }
 
