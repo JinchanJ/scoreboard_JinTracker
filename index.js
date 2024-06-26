@@ -85,8 +85,8 @@ LoadEverything().then(() => {
               player.pronoun ? player.pronoun : ""
             );
 
-            // // Get the name of the state instead of the flag and put it next to the location pin logo.
-            // await SetInnerHtml(
+            // Get the name of the state instead of the flag and put it next to the location pin logo.
+            // SetInnerHtml(
             //   $(`.p${t + 1} .flagstate`),
             //   player.state.name
             //     ? `<span class="location_logo symbol"></span>${String(
@@ -95,7 +95,7 @@ LoadEverything().then(() => {
             //     : ""
             // );
 
-            // await SetInnerHtml(
+            // SetInnerHtml(
             //   $(`.p${t + 1} .twitter`),
             //   player.twitter
             //     ? `<span class="twitter_logo symbol"></span>${String(
@@ -195,6 +195,7 @@ LoadEverything().then(() => {
           SetInnerHtml($(`.p${t + 1} .pronoun`), "");
           SetInnerHtml($(`.p${t + 1}.container .placeholder_container`), "");
           SetInnerHtml($(`.p${t + 1} .score`), String(team.score));
+          UpdateColor(player, t);
           if (team.color) {
             document
               .querySelector(":root")
@@ -796,6 +797,8 @@ async function thirdFunction(t) {
 
   var chips = document.getElementsByClassName(`p${t + 1} chips`);
 
+  var camera_border_light = document.querySelector(`.p${t + 1}.light`);
+
   // Assuming there's only one div with the class "myDiv", you can directly access it
   var div = divs[0];
 
@@ -913,6 +916,24 @@ async function thirdFunction(t) {
         "none"
       );
 
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.container`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24)) drop-shadow(0 3px 1px rgba(0, 0, 0, 0.28)) drop-shadow(0 1px 5px rgba(0, 0, 0, 0.24)) drop-shadow(0 -1px 2px rgba(0, 0, 0, 0.2))"
+        "none"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.under_chips`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24)) drop-shadow(0 3px 1px rgba(0, 0, 0, 0.28)) drop-shadow(0 1px 5px rgba(0, 0, 0, 0.24)) drop-shadow(0 -1px 2px rgba(0, 0, 0, 0.2))"
+        "none"
+      );
+
+      camera_border_light.classList.remove("unhidden");
+
       for (key in chip_elements) {
         console.log(key);
         console.log("Hello there" + key);
@@ -967,6 +988,24 @@ async function thirdFunction(t) {
         "0em 0em 0.2em #000"
       );
 
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.container`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24)) drop-shadow(0 3px 1px rgba(0, 0, 0, 0.28)) drop-shadow(0 1px 5px rgba(0, 0, 0, 0.24)) drop-shadow(0 -1px 2px rgba(0, 0, 0, 0.2))"
+        "none"
+      );
+
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.under_chips`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.24)) drop-shadow(0 3px 1px rgba(0, 0, 0, 0.28)) drop-shadow(0 1px 5px rgba(0, 0, 0, 0.24)) drop-shadow(0 -1px 2px rgba(0, 0, 0, 0.2))"
+        "none"
+      );
+
+      camera_border_light.classList.remove("unhidden");
+
       for (key in chip_elements) {
         console.log(key);
         console.log("Hello there" + key);
@@ -1020,19 +1059,24 @@ async function thirdFunction(t) {
         "0em 0em 0.2em #000"
       );
 
-      // changeStylesheetRule(
-      //   stylesheet,
-      //   `.p${t + 1}.container`,
-      //   "filter",
-      //   "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
-      // );
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.container`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
+        "drop-shadow(0 0px 2px rgba(255, 255, 255, 0.85))"
+        // "none"
+      );
 
-      // changeStylesheetRule(
-      //   stylesheet,
-      //   `.p${t + 1}.under_chips`,
-      //   "filter",
-      //   "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
-      // );
+      changeStylesheetRule(
+        stylesheet,
+        `.p${t + 1}.under_chips`,
+        "filter",
+        // "drop-shadow(0 2px 2px rgba(255, 255, 255, 0.24)) drop-shadow(0 3px 1px rgba(255, 255, 255, 0.24)) drop-shadow(0 1px 5px rgba(255, 255, 255, 0.24)) drop-shadow(0 -1px 2px rgba(255, 255, 255, 0.24))"
+        "drop-shadow(0 0px 2px rgba(255, 255, 255, 0.85))"
+      );
+
+      camera_border_light.classList.add("unhidden");
 
       for (key in chip_elements) {
         console.log(key);
